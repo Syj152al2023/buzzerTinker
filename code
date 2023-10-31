@@ -1,0 +1,20 @@
+int Speaker = 0;
+void setup() {
+  pinMode(Speaker, OUTPUT);
+}
+void myTone(byte pin, uint16_t frequency, uint16_t duration) {
+  unsigned long startTime = millis();
+  unsigned long halfPeriod = 1000000L / frequency / 2;
+  while (millis() - startTime < duration) {
+    digitalWrite(pin, HIGH); delayMicroseconds(halfPeriod);
+    digitalWrite(pin, LOW);delayMicroseconds(halfPeriod);
+  }
+}
+void loop() {
+  myTone(Speaker, 440, 500);
+  delay(1000);
+  myTone(Speaker, 900, 500);
+  delay(1000);
+  myTone(Speaker, 600, 500);
+  delay(1000);
+}
